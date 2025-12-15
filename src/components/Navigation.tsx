@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import logo from "@/assets/concrete-hernandez-logo.png";
+import { Menu, X, Phone } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -35,33 +34,44 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <button onClick={() => scrollToSection("home")} className="flex items-center space-x-3 group">
-            <img src={logo} alt="Concrete Hernandez" className="h-16 sm:h-20 md:h-24 w-auto" />
+          <button onClick={() => scrollToSection("home")} className="flex items-center gap-3 group">
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground tracking-tight sm:text-2xl">Standard Concrete</span>
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">Highest Quality</span>
+            </div>
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                className="text-foreground/70 hover:text-primary transition-colors font-medium"
               >
                 {item.label}
               </button>
             ))}
             <LanguageToggle />
+            <a
+              href="tel:+17868169197"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/25"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="hidden lg:inline">786-816-9197</span>
+              <span className="lg:hidden">Call</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
             <LanguageToggle />
-            <button className="text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <button className="text-foreground p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -70,17 +80,24 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/98 backdrop-blur-sm border-b border-border">
-          <div className="container mx-auto px-4 py-4 space-y-3">
+        <div className="md:hidden bg-background border-b border-border">
+          <div className="container mx-auto px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left text-foreground/80 hover:text-primary transition-colors font-medium py-2"
+                className="block w-full text-left text-foreground/80 hover:text-primary hover:bg-secondary/50 transition-colors font-medium py-3 px-4 rounded-lg"
               >
                 {item.label}
               </button>
             ))}
+            <a
+              href="tel:+17868169197"
+              className="flex items-center justify-center gap-2 w-full mt-4 rounded-full bg-primary px-5 py-3 text-base font-semibold text-primary-foreground"
+            >
+              <Phone className="h-4 w-4" />
+              786-816-9197
+            </a>
           </div>
         </div>
       )}

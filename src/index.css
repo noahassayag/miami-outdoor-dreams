@@ -2,93 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-Concrete gray theme - light mode
+/* Design system for Standard Concrete Company
+   Miami tropical modern - clean whites, ocean teals, warm accents
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 30 5% 88%;
-    --foreground: 30 10% 15%;
+    --background: 210 20% 98%;
+    --foreground: 220 25% 12%;
 
-    --card: 30 5% 94%;
-    --card-foreground: 30 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
 
-    --popover: 30 5% 94%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
 
-    --primary: 25 75% 42%;
-    --primary-foreground: 30 5% 98%;
+    --primary: 185 72% 38%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 5% 80%;
-    --secondary-foreground: 30 10% 20%;
+    --secondary: 210 15% 92%;
+    --secondary-foreground: 220 20% 25%;
 
-    --muted: 30 5% 82%;
-    --muted-foreground: 30 5% 40%;
+    --muted: 210 12% 90%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 25 75% 42%;
-    --accent-foreground: 30 5% 98%;
+    --accent: 32 95% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 30 5% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 30 5% 75%;
-    --input: 30 5% 75%;
-    --ring: 25 75% 42%;
+    --border: 210 15% 88%;
+    --input: 210 15% 88%;
+    --ring: 185 72% 38%;
 
     --radius: 0.5rem;
     
-    --gradient-primary: linear-gradient(135deg, hsl(25, 75%, 42%), hsl(25, 65%, 32%));
-    --shadow-glow: 0 0 40px hsl(25 75% 42% / 0.2);
+    --gradient-primary: linear-gradient(135deg, hsl(185, 72%, 38%), hsl(185, 65%, 28%));
+    --gradient-warm: linear-gradient(135deg, hsl(32, 95%, 55%), hsl(20, 90%, 50%));
+    --shadow-glow: 0 0 40px hsl(185 72% 38% / 0.2);
 
-    --sidebar-background: 30 5% 94%;
-    --sidebar-foreground: 30 10% 20%;
-    --sidebar-primary: 30 10% 15%;
-    --sidebar-primary-foreground: 30 5% 98%;
-    --sidebar-accent: 30 5% 88%;
-    --sidebar-accent-foreground: 30 10% 15%;
-    --sidebar-border: 30 5% 75%;
-    --sidebar-ring: 25 75% 42%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 25%;
+    --sidebar-primary: 220 25% 12%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 95%;
+    --sidebar-accent-foreground: 220 25% 12%;
+    --sidebar-border: 210 15% 88%;
+    --sidebar-ring: 185 72% 38%;
   }
 
   .dark {
-    --background: 30 5% 88%;
-    --foreground: 30 10% 15%;
+    --background: 220 20% 10%;
+    --foreground: 210 20% 98%;
 
-    --card: 30 5% 94%;
-    --card-foreground: 30 10% 15%;
+    --card: 220 18% 14%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 30 5% 94%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 220 18% 14%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 25 75% 42%;
-    --primary-foreground: 30 5% 98%;
+    --primary: 185 72% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 5% 80%;
-    --secondary-foreground: 30 10% 20%;
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 15% 85%;
 
-    --muted: 30 5% 82%;
-    --muted-foreground: 30 5% 40%;
+    --muted: 220 12% 18%;
+    --muted-foreground: 210 10% 55%;
 
-    --accent: 25 75% 42%;
-    --accent-foreground: 30 5% 98%;
+    --accent: 32 95% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 30 5% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 30 5% 75%;
-    --input: 30 5% 75%;
-    --ring: 25 75% 42%;
+    --border: 220 12% 22%;
+    --input: 220 12% 22%;
+    --ring: 185 72% 45%;
 
-    --sidebar-background: 30 5% 94%;
-    --sidebar-foreground: 30 10% 20%;
-    --sidebar-primary: 25 75% 42%;
-    --sidebar-primary-foreground: 30 5% 98%;
-    --sidebar-accent: 30 5% 88%;
-    --sidebar-accent-foreground: 30 10% 20%;
-    --sidebar-border: 30 5% 75%;
-    --sidebar-ring: 25 75% 42%;
+    --sidebar-background: 220 18% 14%;
+    --sidebar-foreground: 210 15% 85%;
+    --sidebar-primary: 185 72% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 15% 90%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 185 72% 45%;
   }
 }
 
