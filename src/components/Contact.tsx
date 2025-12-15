@@ -2,8 +2,6 @@ import { Phone, Instagram, MapPin, Clock } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-import heroImage2 from "@/assets/concrete-hero-2.jpg";
-
 const Contact = () => {
   const { ref, isVisible } = useScrollAnimation();
   const { t } = useLanguage();
@@ -12,75 +10,65 @@ const Contact = () => {
     <section
       ref={ref}
       id="contact"
-      className={`relative overflow-hidden bg-secondary py-20 sm:py-28 lg:py-0 transition-all duration-1000 ${
+      className={`bg-background py-16 sm:py-20 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-2">
-        {/* Left side - Image */}
-        <div className="relative hidden lg:block">
-          <img 
-            src={heroImage2} 
-            alt="Our Work" 
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-secondary/50" />
-        </div>
-
-        {/* Right side - Content */}
-        <div className="px-4 py-12 sm:px-6 lg:px-12 lg:py-28">
-          <p className="mb-3 text-sm font-bold tracking-[0.2em] text-primary uppercase">{t("contact.label")}</p>
-          <h2 className="text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            {t("contact.title1")}
-            <br />
-            <span className="text-primary">{t("contact.title2")}</span>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <p className="mb-2 text-xs font-bold tracking-[0.2em] text-primary uppercase">{t("contact.label")}</p>
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+            {t("contact.title1")} <span className="text-primary">{t("contact.title2")}</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground font-body">
+          <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground font-body">
             {t("contact.description")}
           </p>
+        </div>
 
-          {/* Contact info grid */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-2xl bg-card p-6 shadow-sm">
-              <Phone className="mb-4 h-8 w-8 text-primary" />
-              <h3 className="mb-1 text-lg font-bold text-foreground">{t("contact.call.title")}</h3>
-              <a href="tel:+17868169197" className="text-2xl font-bold text-primary hover:underline">
-                786-816-9197
-              </a>
-            </div>
-
-            <div className="rounded-2xl bg-card p-6 shadow-sm">
-              <Instagram className="mb-4 h-8 w-8 text-accent" />
-              <h3 className="mb-1 text-lg font-bold text-foreground">{t("contact.social.title")}</h3>
-              <a 
-                href="https://www.instagram.com/standard_concrete_company_llc" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-accent hover:underline"
-              >
-                @standard_concrete_company_llc
-              </a>
-            </div>
-
-            <div className="rounded-2xl bg-card p-6 shadow-sm">
-              <MapPin className="mb-4 h-8 w-8 text-primary" />
-              <h3 className="mb-1 text-lg font-bold text-foreground">Location</h3>
-              <p className="text-muted-foreground font-body">Miami, FL & Surrounding Areas</p>
-            </div>
-
-            <div className="rounded-2xl bg-card p-6 shadow-sm">
-              <Clock className="mb-4 h-8 w-8 text-primary" />
-              <h3 className="mb-1 text-lg font-bold text-foreground">Hours</h3>
-              <p className="text-muted-foreground font-body">Mon-Sat: 7AM - 6PM</p>
-            </div>
+        {/* Contact info grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-xl border border-border bg-card p-5">
+            <Phone className="mb-3 h-6 w-6 text-primary" />
+            <h3 className="mb-1 text-sm font-semibold text-foreground">{t("contact.call.title")}</h3>
+            <a href="tel:+17868169197" className="text-lg font-bold text-primary hover:underline">
+              786-816-9197
+            </a>
           </div>
 
-          {/* Big CTA */}
+          <div className="rounded-xl border border-border bg-card p-5">
+            <Instagram className="mb-3 h-6 w-6 text-accent" />
+            <h3 className="mb-1 text-sm font-semibold text-foreground">{t("contact.social.title")}</h3>
+            <a 
+              href="https://www.instagram.com/standard_concrete_company_llc" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-accent hover:underline"
+            >
+              @standard_concrete_company_llc
+            </a>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-5">
+            <MapPin className="mb-3 h-6 w-6 text-primary" />
+            <h3 className="mb-1 text-sm font-semibold text-foreground">Location</h3>
+            <p className="text-sm text-muted-foreground font-body">Miami, FL & Surrounding</p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-5">
+            <Clock className="mb-3 h-6 w-6 text-primary" />
+            <h3 className="mb-1 text-sm font-semibold text-foreground">Hours</h3>
+            <p className="text-sm text-muted-foreground font-body">Mon-Sat: 7AM - 6PM</p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-8 text-center">
           <a
             href="tel:+17868169197"
-            className="mt-10 flex w-full items-center justify-center gap-3 rounded-2xl bg-primary py-6 text-xl font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-all hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90"
           >
-            <Phone className="h-6 w-6" />
+            <Phone className="h-4 w-4" />
             {t("contact.cta.button")}
           </a>
         </div>

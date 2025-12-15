@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, MapPin, Phone, Award, Star } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Award, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import heroImage1 from "@/assets/concrete-hero-1.jpg";
@@ -15,7 +15,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -23,105 +23,119 @@ const Hero = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
+  const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Full-screen background images */}
-      {images.map((img, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentImage ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img src={img} alt="Concrete work" className="h-full w-full object-cover" />
-        </div>
-      ))}
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/80" />
-
-      {/* Content */}
-      <div className="relative z-10 flex min-h-screen flex-col justify-between px-4 pt-24 pb-8 sm:px-6 lg:px-8">
-        {/* Top stats bar */}
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-6 text-background/80 sm:justify-between">
-          <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-accent" />
-            <span className="text-sm font-medium">{t("hero.experience")}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-accent" />
-            <span className="text-sm font-medium">{t("hero.location")}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-            ))}
-            <span className="ml-2 text-sm font-medium">5.0 Rating</span>
-          </div>
-        </div>
-
-        {/* Main content - centered */}
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <span className="mb-4 inline-block rounded-full border border-background/20 bg-background/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-background backdrop-blur-sm">
-            Standard Concrete Company
-          </span>
-          
-          <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-background sm:text-6xl md:text-7xl lg:text-8xl">
-            {t("hero.title1")}
-            <br />
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-              {t("hero.title2")}
-            </span>
-          </h1>
-
-          <p className="mb-8 max-w-xl text-lg text-background/80 font-body sm:text-xl">
-            {t("hero.description")}
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <button
-              onClick={scrollToContact}
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-accent px-10 py-5 text-lg font-bold text-accent-foreground shadow-2xl shadow-accent/30 transition-all duration-300 hover:shadow-accent/50 hover:scale-105"
-            >
-              {t("hero.cta1")}
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-            <a
-              href="tel:+17868169197"
-              className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-background/30 bg-background/10 px-8 py-5 text-lg font-semibold text-background backdrop-blur-sm transition-all hover:bg-background/20"
-            >
-              <Phone className="h-5 w-5" />
-              786-816-9197
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom image indicators and services */}
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 sm:flex-row sm:justify-between">
-          {/* Image indicators */}
-          <div className="flex gap-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImage(index)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === currentImage ? "w-12 bg-accent" : "w-6 bg-background/40 hover:bg-background/60"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Services tags */}
-          <div className="flex flex-wrap justify-center gap-3 sm:justify-end">
-            {["Driveways", "Patios", "Stamped", "Pergolas"].map((service) => (
-              <span
-                key={service}
-                className="rounded-full border border-background/20 bg-background/10 px-4 py-2 text-xs font-medium uppercase tracking-wider text-background/80 backdrop-blur-sm"
-              >
-                {service}
+    <section id="home" className="bg-background pt-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid min-h-[80vh] items-center gap-8 py-12 lg:grid-cols-2 lg:gap-12">
+          {/* Left - Content */}
+          <div className="order-2 lg:order-1">
+            {/* Stats badges */}
+            <div className="mb-6 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+                <Award className="h-3.5 w-3.5" />
+                {t("hero.experience")}
               </span>
-            ))}
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5" />
+                {t("hero.location")}
+              </span>
+              <span className="inline-flex items-center gap-0.5 rounded-full bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 fill-accent" />
+                ))}
+              </span>
+            </div>
+
+            {/* Company name */}
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              Standard Concrete Company
+            </p>
+            
+            {/* Headline */}
+            <h1 className="mb-4 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl">
+              {t("hero.title1")}{" "}
+              <span className="text-primary">{t("hero.title2")}</span>
+            </h1>
+
+            <p className="mb-6 max-w-md text-base text-muted-foreground font-body">
+              {t("hero.description")}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={scrollToContact}
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90"
+              >
+                {t("hero.cta1")}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </button>
+              <a
+                href="tel:+17868169197"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-secondary"
+              >
+                <Phone className="h-4 w-4" />
+                786-816-9197
+              </a>
+            </div>
+
+            {/* Service tags */}
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["Driveways", "Patios", "Stamped", "Pergolas"].map((service) => (
+                <span
+                  key={service}
+                  className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
+                >
+                  {service}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right - Carousel */}
+          <div className="relative order-1 lg:order-2">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              {images.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt={`Concrete work ${index + 1}`}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                    index === currentImage ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+              
+              {/* Navigation arrows */}
+              <button
+                onClick={prevImage}
+                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-background/80 p-2 backdrop-blur-sm transition-all hover:bg-background"
+              >
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-background/80 p-2 backdrop-blur-sm transition-all hover:bg-background"
+              >
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </button>
+            </div>
+
+            {/* Indicators */}
+            <div className="mt-4 flex justify-center gap-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImage(index)}
+                  className={`h-1.5 rounded-full transition-all ${
+                    index === currentImage ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-muted-foreground"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
